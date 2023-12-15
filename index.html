@@ -5,129 +5,191 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Client Questionnaire</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
+            body {
+              font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+              margin: 0;
+              padding: 0;
+              background-color: #f1efef;
+              color: #333;
+            }
+
+            .container {
+              width: 45%;
+              margin: auto;
+              overflow: hidden;
+            }
+
+            #part-one,
+            #part-two,
+            #part-three,
+            #engagement-letter {
+              background: #fff;
+              margin: 50px 0;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+              display: none;
+            }
+
+            #part-one.active,
+            #part-two.active,
+            #part-three.active,
+            #engagement-letter.active {
+              display: block;
+            }
+
+            .form-group label {
+              font-weight: bold;
+              margin-bottom: 8px;
+            }
+
+            .form-group input,
+            .form-group select {
+              box-sizing: border-box;
+              width: 100%;
+              padding: 8px;
+              margin-bottom: 10px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+            }
+
+
       }
 
-      #part-one,
-      #part-two,
-      #part-three,
-      #engagement-letter {
-        padding-top: 100px; 
-      }
+            #part-one.active,
+            #part-two.active,
+            #part-three.active {
+              display: block;
+            }
 
-      .container {
-        width: 80%;
-        margin: auto;
-        overflow: hidden;
-      }
+            .part_h{color: #071441; /* 设置文本颜色为深蓝色 */
+        text-align: center; /* 将文本居中 */
+        padding: 15px;}
 
-      #part-one,
-      #part-two,
-      #part-three {
-        background: #fff;
-        margin: 50px 0;
-        padding: 30px;
-        border-radius: 8px;
-        display: none;
-      }
+        .EL_h {text-align: center;
+          padding: 15px;}
 
-      #part-one.active,
-      #part-two.active,
-      #part-three.active {
-        display: block;
-      }
 
-      .form-group {
-        margin-bottom: 15px;
-      }
+            .form-group {
+              margin-bottom: 15px;
+            }
 
-      .form-group label {
-        display: block;
-        margin-bottom: 5px;
-      }
+            .form-group label {
+              display: block;
+              margin-bottom: 5px;
+            }
 
-      .form-group input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
+            .form-group input {
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            }
 
-      .btn {
-        display: inline-block;
-        color: #fff;
-        background-color: #007bff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 4px;
-      }
+            .btn {
+              display: inline-block;
+              color: #fff;
+              background-color: #071441;
+              border: none;
+              padding: 10px 20px;
+              font-size: 16px;
+              cursor: pointer;
+              border-radius: 4px;
 
-      .boxes {
-        display: block;
-        margin-bottom: 10px; /* Optional: for some space between the labels */
-      }
+            }
 
-      .form-page {
-        display: none;
-      }
+            .btn:hover {
+              background-color: #004494;
+            }
 
-      .form-page.active {
-        display: block;
-      }
+            .add-more:hover,
+            .remove-last:hover {
+              background-color: #1b6caa;
+            }
 
-      .blockchain-group {
-        margin-bottom: 15px;
-      }
-      .add-more {
-        margin-top: 10px;
-      }
 
-      .button-group {
-        margin-top: 10px;
-      }
 
-      .input-field {
-        width: 100%; /* Or set a fixed width like 300px */
-        max-width: 500px; /* This will ensure the input fields do not stretch beyond 500px */
-        box-sizing: border-box; /* This ensures padding and border are included in the element's total width and height */
-      }
 
-      .required-star {
-        color: red;
-      }
+            .boxes {
+              display: block;
+              margin-bottom: 10px; /* Optional: for some space between the labels */
+            }
 
-      .logo-container {
-        position: fixed; /* This will make the logo fixed at the top of the page */
-        top: 0;
-        left: 0;
-        width: 100%;
+            .form-page {
+              display: none;
+            }
+
+            .form-page.active {
+              display: block;
+            }
+
+            .blockchain-group {
+              margin-bottom: 15px;
+            }
+            .add-more {
+              margin-top: 10px;
+            }
+
+            .button-group {
+              margin-top: 10px;
+            }
+
+            .input-field {
+              width: 100%; /* Or set a fixed width like 300px */
+              max-width: 500px; /* This will ensure the input fields do not stretch beyond 500px */
+              box-sizing: border-box; /* This ensures padding and border are included in the element's total width and height */
+            }
+
+            .required-star {
+              color: red;
+            }
+
+            .logo-container {
         display: flex;
-        justify-content: center; /* This will center the logo horizontally */
-        background-color: #ffffff; /* Change this to match your site's background color */
-        z-index: 1000; /* This will ensure the logo stays on top of other elements */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        background-color: #fff;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       }
 
-      .logo {
-        width: 300px; /* You can adjust this value to change the logo size */
-        margin: 10px 0; /* This will add some vertical spacing */
-      }
+
+            .logo {
+              width: 250px;
+            }
+
+            .letter-content h1,
+            .letter-content h2 {
+              color: #0056b3;
+            }
     </style>
   </head>
   <body>
     <div class="logo-container">
-      <img src="TNF-Logo_Black.png" alt="TNF Logo" class="logo" />
+      <img src="TNF-Logo_Color.png" alt="TNF Logo" class="logo" />
     </div>
 
     <div class="container">
       <div id="part-one" class="active">
-        <h2>Part One - General Information</h2>
+        <h2 class="part_h">Part One - General Information</h2>
         <form>
+          <div class="form-group">
+            <label for="prefix"
+              >Prefix <span class="required-star">*</span></label
+            >
+            <select id="prefix" name="prefix" required>
+              <option value="">Please select</option>
+              <option value="mr">Mr.</option>
+              <option value="ms">Ms.</option>
+              <option value="mrs">Mrs.</option>
+              <option value="miss">Miss</option>
+              <option value="dr">Dr.</option>
+              <!-- 添加其他需要的选项 -->
+            </select>
+          </div>
+          <!-- This is a hidden input to store the prefix value -->
+          <input type="hidden" id="hidden-prefix" name="hidden-prefix" />
+
           <div class="form-group">
             <label for="first-name"
               >First Name <span class="required-star">*</span></label
@@ -166,7 +228,7 @@
 
       <div id="part-two">
         <div class="back-arrow" onclick="showPartOne()">← Back</div>
-        <h2>Part Two - Cryptocurrency Activity</h2>
+        <h2 class="part_h">Part Two - Cryptocurrency Activity</h2>
         <form>
           <h3>Capital Gains Related Activity</h3>
           <label class="boxes">
@@ -318,13 +380,20 @@
 
       <div id="part-three" class="form-page">
         <div class="back-arrow" onclick="showPartTwo()">← Back</div>
-        <h2>Part Three - Wallet Addresses</h2>
+        <h2 class="part_h">Part Three - Wallet Addresses</h2>
         <form id="blockchain-form">
           <div class="blockchain-group" id="blockchain-group-1">
             <label for="blockchain-1">Blockchain:</label>
             <select id="blockchain-1" name="blockchain-1">
-              <option value="ethereum">Ethereum</option>
-              <option value="bitcoin">Bitcoin</option>
+              <option value="Bitcoin">Bitcoin</option>
+              <option value="Ethereum">Ethereum</option>
+              <option value="Algorand">Algorand</option>
+              <option value="Litecoin">Litecoin</option>
+              <option value="Dogecoin">Dogecoin</option>
+              <option value="Cardano">Cardano</option>
+              <option value="Polkadot">Polkadot</option>
+              <option value="Solana">Solana</option>
+              <option value="Ripple">Ripple</option>
               <!-- ... other blockchains ... -->
             </select>
             <label for="address-count-1">Number of Wallet Addresses:</label>
@@ -354,22 +423,111 @@
       <div id="engagement-letter" class="form-page">
         <div class="back-arrow" onclick="showPartThree()">← Back</div>
         <div class="letter-content">
-          <h1>Engagement Letter</h1>
+          <h1 class="EL_h">Engagement Letter</h1>
           <p>Dear <span id="client-name"></span>,</p>
           <p>
-            Thank you for choosing us for your cryptocurrency consulting needs.
-            Based on the information provided, we understand that you are
-            interested in the following services:
+            The Network Firm LLP (“TNF,” “we” or “us”) is pleased to provide the
+            services described below (collectively, the “Services”) to the
+            above-named Client (“Client” or “you”). The Services are subject to
+            the terms and conditions of this engagement letter and the Terms &
+            Conditions for Professional Services, located at
+            <a href="https://www.thenetworkfirm.com/terms-of-use"
+              >https://www.thenetworkfirm.com/terms-of-use</a
+            >
+            (together, this “Agreement”).
           </p>
+          <h2>SCOPE OF WORK</h2>
           <ul id="services-list">
             <!-- List of services will be generated here based on user input -->
           </ul>
           <ul id="wallets-list">
             <!-- List of blockchain and wallet addresses will be generated here based on user input -->
           </ul>
-          <p>We look forward to working with you.</p>
+          <p>
+            At your direction, we will perform crypto and digital assets basis
+            tracking, reconciliation, and reporting services on an advisory
+            basis. (“Basis Tracking Services”). At the conclusion of our
+            engagement, we will provide you with a detailed memo outlining the
+            actions taken and results of our procedures. This Agreement does not
+            include services for a Tax Opinion. A more detailed description of
+            the Services is provided in Exhibit A.
+          </p>
+          <h2>PRICING</h2>
+          <p>
+            Our price for the Services will be a one-time payment of
+            <span id="totalQuote"></span>. All payments for services will be due
+            in advance, invoiced to you and due at the time of receipt. Pricing
+            estimates for basis tracking and reconciliation support are based on
+            the agreed wallet and transactions scope in Exhibit A. Pricing
+            estimates anticipate that we do not encounter any unexpected
+            circumstances, such as additional tasks and work effort, addition of
+            wallets and transaction volume, and delayed responses by you to our
+            requests for information or documents. For example, if our work is
+            delayed because you do not complete requested schedules or provide
+            other information as requested, we will need to spend additional
+            time that will be billed to you at our standard hourly rates or
+            incur additional expenses that will be billed to you separately. The
+            price estimate above does not include the price for general tax
+            advisory and/or compliance filing services. The price for general
+            tax advisory and/or compliance filing services, performed from time
+            to time at your request, will be based on our standard hourly rates.
+            Any additional professional services not specifically described in
+            the scope of service or Exhibit A, or any additional time and effort
+            we may spend as a result of the changes in tax legislation that may
+            impact our Services to you, will be billed separately using our
+            standard hourly rates and made known to you in advance.
+          </p>
+
+          <h2>RESPONSIBILITIES</h2>
+          <p>
+            Work is to be conducted remotely from TNF offices or other off-site
+            locations. TNF will act as a consultant but will not serve as your
+            “authorized representative” or “Agent” for any interactions or
+            communications with your vendors, Internal Revenue Service, or other
+            third parties. TNF is not responsible for, and will not verify, the
+            information you provide under this Agreement. We will assume all
+            information provided by you is accurate and will not be responsible
+            for any material misstatements. In order to deliver digital assets
+            basis tracking, reconciliation, and reporting services completely
+            and accurately to you, you are responsible to provide us with
+            complete wallet and exchange account information in a timely manner.
+            A successful working relationship requires a significant commitment
+            on our part, as well as yours. You are responsible to be available
+            during our ongoing work with you, provide timely responses to
+            questions and calls for decisions, and devote the resources
+            necessary to achieve the objectives of the engagement. If the
+            information you provide is not submitted in a timely manner or is
+            incomplete or unusable, we reserve the right to charge additional
+            expenses for services. If this occurs, we will contact you to
+            discuss the matter and the anticipated delay in performing our
+            Services. You understand and acknowledge that we will not provide
+            you with any investment or legal advice in connection with the
+            Services. Additionally, we will not provide tax advice unless we are
+            specifically engaged to do so under a separate agreement.
+          </p>
+
+          <h2>CONCLUSION</h2>
+          <p>
+            We appreciate the opportunity to be of service to you and believe
+            this Agreement accurately summarizes the terms applicable to the
+            Services. If you have any questions, please let us know. If you
+            agree with the terms of this Agreement, please sign and return it to
+            us.
+          </p>
           <p>Sincerely,</p>
-          <p>The Network Firm</p>
+          <p>Noah Buxton</p>
+          <p>CEO & Co-founder</p>
+          <p>The Network Firm LLP</p>
+
+          <p>
+            THIS AGREEMENT, INCLUDING THE TERMS & CONDITIONS FOR PROFESSIONAL
+            SERVICES AVAILABLE AT
+            <a
+              href="https://www.thenetworkfirm.com/terms-and-conditions-for-professional-service"
+              >https://www.thenetworkfirm.com/terms-and-conditions-for-professional-service</a
+            >
+            IS HEREBY APPROVED AND ACCEPTED:
+          </p>
         </div>
         <form id="signature-form">
           <div class="form-group">
@@ -417,6 +575,11 @@
 
         // Check if the form is valid
         if (form.checkValidity()) {
+          // Store the selected prefix value
+          var prefix = document.getElementById("prefix").value;
+          document.getElementById("hidden-prefix").value = prefix;
+
+          // Continue with existing code...
           document.getElementById("part-one").classList.remove("active");
           document.getElementById("part-three").classList.remove("active");
           document.getElementById("part-two").classList.add("active");
@@ -442,9 +605,15 @@
         newGroup.innerHTML = `
         <label for="blockchain-${blockchainCounter}">Blockchain:</label>
         <select id="blockchain-${blockchainCounter}" name="blockchain-${blockchainCounter}">
-            <option value="ethereum">Ethereum</option>
-            <option value="bitcoin">Bitcoin</option>
-            <!-- ... other blockchains ... -->
+          <option value="Bitcoin">Bitcoin</option>
+          <option value="Ethereum">Ethereum</option>
+          <option value="Algorand">Algorand</option>
+          <option value="Litecoin">Litecoin</option>
+          <option value="Dogecoin">Dogecoin</option>
+          <option value="Cardano">Cardano</option>
+          <option value="Polkadot">Polkadot</option>
+          <option value="Solana">Solana</option>
+          <option value="Ripple">Ripple</option>
         </select>
         <label for="address-count-${blockchainCounter}">Number of Wallet Addresses:</label>
         <input type="number" id="address-count-${blockchainCounter}" name="address-count-${blockchainCounter}" value="0" required>
@@ -477,10 +646,25 @@
       }
 
       function generateLetter() {
-        var clientName =
-          document.getElementById("first-name").value +
-          " " +
-          document.getElementById("last-name").value;
+        // Retrieve the prefix and the names
+        var prefix = document.getElementById("hidden-prefix").value;
+        var firstName = document.getElementById("first-name").value;
+        var lastName = document.getElementById("last-name").value;
+
+        // Check the prefix and format accordingly
+        var formattedPrefix;
+        if (prefix.toLowerCase() === "miss") {
+          formattedPrefix = "Miss"; // 'Miss' does not have a period
+        } else {
+          // Capitalize the first letter and add a period for other prefixes
+          formattedPrefix =
+            prefix.charAt(0).toUpperCase() +
+            prefix.slice(1).toLowerCase() +
+            ".";
+        }
+
+        // Set the client's name including the formatted prefix
+        var clientName = `${formattedPrefix} ${lastName}`;
         document.getElementById("client-name").textContent = clientName;
 
         // Reset engagement letter to default state
@@ -549,13 +733,8 @@
         var ratePerAddress = 10; // Set your rate per address here
         var totalQuote = totalAddressCount * ratePerAddress; // Calculate the total quote
 
-        var quoteParagraph = document.createElement("p");
-        quoteParagraph.id = "quote-paragraph"; // Assign an ID to the new quote paragraph
-        quoteParagraph.textContent = "Total Quote: $" + totalQuote.toFixed(2);
-        document
-          .getElementById("engagement-letter")
-          .querySelector(".letter-content")
-          .appendChild(quoteParagraph);
+        var quoteParagraph = document.getElementById("totalQuote");
+        quoteParagraph.textContent = "$" + totalQuote.toFixed(2);
       }
 
       async function downloadPDF() {
