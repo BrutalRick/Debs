@@ -1,541 +1,771 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>User Onboarding</title>
     <style>
-        body {
-            background-color: #f5f5f5;
-            /* 设置背景颜色为浅灰色 */
-            font-family: Arial, sans-serif;
-            /* 设置字体 */
-        }
+      body {
+        background-color: #f5f5f5;
+        /* 设置背景颜色为浅灰色 */
+        font-family: Arial, sans-serif;
+        /* 设置字体 */
+      }
 
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-            background-color: #fff;
-            /* 设置容器背景色为白色 */
-            border-radius: 15px;
-            /* 四个角的弧度 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            /* 添加阴影效果 */
-            max-width: 600px;
-            /* 最大宽度，保持内容区域紧凑 */
-        }
+      .container {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        /* 设置容器背景色为白色 */
+        border-radius: 15px;
+        /* 四个角的弧度 */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* 添加阴影效果 */
+        max-width: 600px;
+        /* 最大宽度，保持内容区域紧凑 */
+      }
 
-        .progress-bar {
-            height: 20px;
-            background-color: #ddd;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            width: 100%;
-            /* 进度条宽度与容器相适应 */
-            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-            /* 进度条内阴影 */
-            display: none;
-        }
+      .progress-bar {
+        height: 20px;
+        background-color: #ddd;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        width: 100%;
+        /* 进度条宽度与容器相适应 */
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        /* 进度条内阴影 */
+        display: none;
+      }
 
-        .progress {
-            height: 100%;
-            background-color: #4caf50;
-            border-radius: 5px;
-            text-align: center;
-            color: white;
-            line-height: 20px;
-        }
+      .progress {
+        height: 100%;
+        background-color: #4caf50;
+        border-radius: 5px;
+        text-align: center;
+        color: white;
+        line-height: 20px;
+      }
 
-        h2 {
-            color: #333;
-            /* 标题颜色 */
-        }
+      h2 {
+        color: #333;
+        /* 标题颜色 */
+      }
 
-        button {
-            background-color: #4caf50;
-            /* 按钮颜色 */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 5px;
-            /* 按钮弧度 */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            /* 按钮阴影 */
-        }
+      button {
+        background-color: #4caf50;
+        /* 按钮颜色 */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        /* 按钮弧度 */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        /* 按钮阴影 */
+      }
 
-        button:hover {
-            background-color: #45a049;
-            /* 鼠标悬停时按钮颜色变化 */
-        }
+      button:hover {
+        background-color: #45a049;
+        /* 鼠标悬停时按钮颜色变化 */
+      }
 
-        input,
-        select {
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            /* 输入框和选择框弧度 */
-            box-sizing: border-box;
-            /* 边框内部计算 */
-        }
+      input,
+      select {
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        /* 输入框和选择框弧度 */
+        box-sizing: border-box;
+        /* 边框内部计算 */
+      }
 
-        .page {
-            display: none;
-        }
+      .page {
+        display: none;
+      }
 
-        .page-active {
-            display: block;
-        }
+      .page-active {
+        display: block;
+      }
 
-        .review-item {
-            margin-bottom: 10px;
-        }
+      .review-item {
+        margin-bottom: 10px;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- 进度条 -->
     <div class="progress-bar" id="the_bar">
-        <div class="progress">20%</div>
+      <div class="progress">20%</div>
     </div>
 
     <!-- 容器，包含所有页面 -->
     <div class="container">
-        <!-- 第一页 -->
-        <div id="page1" class="page page-active">
-            <h2>Welcome!</h2>
-            <p>
-                Welcome to the DABS onboarding process.This process is quick and will
-                only take about 5 minutes.
-            </p>
-            <button onclick="nextPage(2)">Next</button>
-        </div>
+      <!-- 第一页 -->
+      <div id="page1" class="page page-active">
+        <h2>Welcome!</h2>
+        <p>
+          Welcome to the DABS onboarding process.This process is quick and will
+          only take about 5 minutes.
+        </p>
+        <button onclick="nextPage(2)">Next</button>
+      </div>
+      <!-- 第2页 -->
+      <div id="page2" class="page">
+        <h2>Basic Information</h2>
+        <form>
+          <label for="first-name"
+            >First Name:<span style="color: red">*</span></label
+          ><br />
+          <input
+            type="text"
+            id="first-name"
+            name="first-name"
+            onchange="saveFormData()"
+            required
+          /><br />
+          <label for="last-name"
+            >Last Name:<span style="color: red">*</span></label
+          ><br />
+          <input
+            type="text"
+            id="last-name"
+            name="last-name"
+            onchange="saveFormData()"
+            required
+          /><br />
+          <label for="email">Email:<span style="color: red">*</span></label
+          ><br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            onchange="saveFormData()"
+            required
+          /><br /><br />
+          <button type="button" onclick="previousPage(1)">Previous</button>
+          <button type="button" onclick="nextPage(3)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第二页 -->
-        <div id="page2" class="page">
-            <h2>Basic Information</h2>
-            <form>
-                <label for="first-name">First Name:<span style="color: red">*</span></label><br />
-                <input type="text" id="first-name" name="first-name" required /><br />
-                <label for="last-name">Last Name:<span style="color: red">*</span></label><br />
-                <input type="text" id="last-name" name="last-name" required /><br />
-                <label for="email">Email:<span style="color: red">*</span></label><br />
-                <input type="email" id="email" name="email" required /><br /><br />
-                <button type="button" onclick="previousPage(1)">Previous</button>
-                <button type="button" onclick="nextPage(3)">Next</button>
-            </form>
-        </div>
+      <!-- 第三页 -->
+      <div id="page3" class="page">
+        <h2>What is your need?<span style="color: red">*</span></h2>
+        <form>
+          <input
+            type="radio"
+            id="individual"
+            name="need"
+            value="individual"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="individual">Individual for personal tax filing</label
+          ><br />
+          <input
+            type="radio"
+            id="representative"
+            name="need"
+            value="representative"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="representative"
+            >Fund representative for tax basis tracking</label
+          ><br />
+          <input
+            type="radio"
+            id="corp_representative"
+            name="need"
+            value="corp_representative"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="corp_representative"
+            >Corporate rep for crypto tax management</label
+          ><br /><br />
+          <button type="button" onclick="previousPage(2)">Previous</button>
+          <button type="button" onclick="nextPage(4)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第三页 -->
-        <div id="page3" class="page">
-            <h2>What is your need?<span style="color: red">*</span></h2>
-            <form>
-                <input type="radio" id="individual" name="need" value="individual" required />
-                <label for="individual">Individual for personal tax filing</label><br />
-                <input type="radio" id="representative" name="need" value="representative" required />
-                <label for="representative">Fund representative for tax basis tracking</label><br />
-                <input type="radio" id="corp_representative" name="need" value="corp_representative" required />
-                <label for="corp_representative">Corporate rep for crypto tax management</label><br /><br />
-                <button type="button" onclick="previousPage(2)">Previous</button>
-                <button type="button" onclick="nextPage(4)">Next</button>
-            </form>
-        </div>
+      <!-- 第四页 -->
+      <div id="page4" class="page">
+        <h2>
+          How complex are your cryptocurrency investment and trading activities
+          generally?<span style="color: red">*</span>
+        </h2>
+        <form>
+          <input
+            type="radio"
+            id="simple"
+            name="complexity"
+            value="simple"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="simple">Simple</label><br />
+          <input
+            type="radio"
+            id="moderate"
+            name="complexity"
+            value="moderate"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="moderate">Medium</label><br />
+          <input
+            type="radio"
+            id="complex"
+            name="complexity"
+            value="complex"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="complex">Complex</label><br /><br />
+          <button type="button" onclick="previousPage(3)">Previous</button>
+          <button type="button" onclick="nextPage(5)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第四页 -->
-        <div id="page4" class="page">
-            <h2>
-                How complex are your cryptocurrency investment and trading activities
-                generally?<span style="color: red">*</span>
-            </h2>
-            <form>
-                <input type="radio" id="simple" name="complexity" value="simple" required />
-                <label for="simple">Simple</label><br />
-                <input type="radio" id="moderate" name="complexity" value="moderate" required />
-                <label for="moderate">Medium</label><br />
-                <input type="radio" id="complex" name="complexity" value="complex" required />
-                <label for="complex">Complex</label><br /><br />
-                <button type="button" onclick="previousPage(3)">Previous</button>
-                <button type="button" onclick="nextPage(5)">Next</button>
-            </form>
-        </div>
+      <!-- 第五页 -->
+      <div id="page5" class="page">
+        <h2>
+          What year did you first purchase cryptocurrency?<span
+            style="color: red"
+            >*</span
+          >
+        </h2>
+        <form>
+          <input
+            type="number"
+            id="first-year"
+            name="first-year"
+            min="2009"
+            required
+            onchange="saveFormData()"
+          /><br /><br />
+          <button type="button" onclick="previousPage(4)">Previous</button>
+          <button type="button" onclick="nextPage(6)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第五页 -->
-        <div id="page5" class="page">
-            <h2>
-                What year did you first purchase cryptocurrency?<span style="color: red">*</span>
-            </h2>
-            <form>
-                <input type="number" id="first-year" name="first-year" min="2009" required /><br /><br />
-                <button type="button" onclick="previousPage(4)">Previous</button>
-                <button type="button" onclick="nextPage(6)">Next</button>
-            </form>
-        </div>
+      <!-- 第六页 -->
+      <div id="page6" class="page">
+        <h2>Currently, I hold<span style="color: red">*</span>:</h2>
+        <form>
+          <input
+            type="radio"
+            id="1-10-assets"
+            name="crypto-assets"
+            value="1-10"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="1-10-assets">1-10 crypto assets</label><br />
+          <input
+            type="radio"
+            id="10-20-assets"
+            name="crypto-assets"
+            value="10-20"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="10-20-assets">10-20 crypto assets</label><br />
+          <input
+            type="radio"
+            id="lost-track"
+            name="crypto-assets"
+            value="lost-track"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="lost-track">I lost track</label><br /><br />
+          <button type="button" onclick="previousPage(5)">Previous</button>
+          <button type="button" onclick="nextPage(7)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第六页 -->
-        <div id="page6" class="page">
-            <h2>Currently, I hold<span style="color: red">*</span>:</h2>
-            <form>
-                <input type="radio" id="1-10-assets" name="crypto-assets" value="1-10" required />
-                <label for="1-10-assets">1-10 crypto assets</label><br />
-                <input type="radio" id="10-20-assets" name="crypto-assets" value="10-20" required />
-                <label for="10-20-assets">10-20 crypto assets</label><br />
-                <input type="radio" id="lost-track" name="crypto-assets" value="lost-track" required />
-                <label for="lost-track">I lost track</label><br /><br />
-                <button type="button" onclick="previousPage(5)">Previous</button>
-                <button type="button" onclick="nextPage(7)">Next</button>
-            </form>
-        </div>
+      <!-- 第七页 -->
+      <div id="page7" class="page">
+        <h2>What centralized exchange accounts do you hold?</h2>
+        <form>
+          <input
+            type="checkbox"
+            id="coinbase"
+            name="exchange"
+            value="coinbase"
+            onchange="saveFormData()"
+          />
+          <label for="coinbase">Coinbase</label><br />
+          <input type="checkbox" id="kraken" name="exchange" value="kraken" onchange="saveFormData()" />
+          <label for="kraken">Kraken</label><br />
+          <input
+            type="checkbox"
+            id="binance-com"
+            name="exchange"
+            value="binance.com"
+            onchange="saveFormData()"
+          />
+          <label for="binance-com">Binance.com</label><br />
+          <input
+            type="checkbox"
+            id="binance-us"
+            name="exchange"
+            value="binance.us"
+            onchange="saveFormData()"
+          />
+          <label for="binance-us">Binance.US</label><br />
+          <input type="checkbox" id="okx" name="exchange" value="okx" onchange="saveFormData()"/>
+          <label for="okx">OKX</label><br />
+          <label for="other-exchanges"
+            >What other centralized exchanges do you trade on?</label
+          ><br />
+          <input
+            type="text"
+            id="other-exchanges"
+            name="other-exchanges"
+            onchange="saveFormData()"
+          /><br /><br />
+          <button type="button" onclick="previousPage(6)">Previous</button>
+          <button type="button" onclick="nextPage(8)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第七页 -->
-        <div id="page7" class="page">
-            <h2>What centralized exchange accounts do you hold?</h2>
-            <form>
-                <input type="checkbox" id="coinbase" name="exchange" value="coinbase" />
-                <label for="coinbase">Coinbase</label><br />
-                <input type="checkbox" id="kraken" name="exchange" value="kraken" />
-                <label for="kraken">Kraken</label><br />
-                <input type="checkbox" id="binance-com" name="exchange" value="binance.com" />
-                <label for="binance-com">Binance.com</label><br />
-                <input type="checkbox" id="binance-us" name="exchange" value="binance.us" />
-                <label for="binance-us">Binance.US</label><br />
-                <input type="checkbox" id="okx" name="exchange" value="okx" />
-                <label for="okx">OKX</label><br />
-                <label for="other-exchanges">What other centralized exchanges do you trade on?</label><br />
-                <input type="text" id="other-exchanges" name="other-exchanges" /><br /><br />
-                <button type="button" onclick="previousPage(6)">Previous</button>
-                <button type="button" onclick="nextPage(8)">Next</button>
-            </form>
-        </div>
+      <!-- 第八页 -->
+      <div id="page8" class="page">
+        <h2>
+          Do you utilize bots and automated trading strategies?<span
+            style="color: red"
+            >*</span
+          >
+        </h2>
+        <form>
+          <input type="radio" id="yes" name="bots" value="yes" required onchange="saveFormData()" />
+          <label for="yes">Yes</label><br />
+          <input type="radio" id="no" name="bots" value="no" required onchange="saveFormData()"/>
+          <label for="no">No</label><br />
+          <input
+            type="radio"
+            id="working-on-it"
+            name="bots"
+            value="working-on-it"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="working-on-it">Working on it</label><br /><br />
+          <button type="button" onclick="previousPage(7)">Previous</button>
+          <button type="button" onclick="nextPage(9)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第八页 -->
-        <div id="page8" class="page">
-            <h2>
-                Do you utilize bots and automated trading strategies?<span style="color: red">*</span>
-            </h2>
-            <form>
-                <input type="radio" id="yes" name="bots" value="yes" required />
-                <label for="yes">Yes</label><br />
-                <input type="radio" id="no" name="bots" value="no" required />
-                <label for="no">No</label><br />
-                <input type="radio" id="working-on-it" name="bots" value="working-on-it" required />
-                <label for="working-on-it">Working on it</label><br /><br />
-                <button type="button" onclick="previousPage(7)">Previous</button>
-                <button type="button" onclick="nextPage(9)">Next</button>
-            </form>
-        </div>
+      <!-- 第九页 -->
+      <div id="page9" class="page">
+        <h2>
+          Ballpark, I have traded approximately<span style="color: red">*</span
+          >:
+        </h2>
+        <form>
+          <input
+            type="radio"
+            id="trade-monthly"
+            name="trade-frequency"
+            value="monthly"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="trade-monthly">Once or twice a month</label><br />
+          <input
+            type="radio"
+            id="trade-weekly"
+            name="trade-frequency"
+            value="weekly"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="trade-weekly">Once a week</label><br />
+          <input
+            type="radio"
+            id="trade-more"
+            name="trade-frequency"
+            value="more"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="trade-more">More</label><br /><br />
+          <button type="button" onclick="previousPage(8)">Previous</button>
+          <button type="button" onclick="nextPage(10)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第九页 -->
-        <div id="page9" class="page">
-            <h2>
-                Ballpark, I have traded approximately<span style="color: red">*</span>:
-            </h2>
-            <form>
-                <input type="radio" id="trade-monthly" name="trade-frequency" value="monthly" required />
-                <label for="trade-monthly">Once or twice a month</label><br />
-                <input type="radio" id="trade-weekly" name="trade-frequency" value="weekly" required />
-                <label for="trade-weekly">Once a week</label><br />
-                <input type="radio" id="trade-more" name="trade-frequency" value="more" required />
-                <label for="trade-more">More</label><br /><br />
-                <button type="button" onclick="previousPage(8)">Previous</button>
-                <button type="button" onclick="nextPage(10)">Next</button>
-            </form>
-        </div>
+      <!-- 第十页 -->
+      <div id="page10" class="page">
+        <h2>
+          How many individual wallets do you have?<span style="color: red"
+            >*</span
+          >
+        </h2>
+        <form>
+          <input
+            type="number"
+            id="wallet-count"
+            name="wallet-count"
+            min="0"
+            required
+            onchange="saveFormData()"
+          /><br /><br />
+          <button type="button" onclick="previousPage(9)">Previous</button>
+          <button type="button" onclick="nextPage(11)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第十页 -->
-        <div id="page10" class="page">
-            <h2>
-                How many individual wallets do you have?<span style="color: red">*</span>
-            </h2>
-            <form>
-                <input type="number" id="wallet-count" name="wallet-count" min="0" required /><br /><br />
-                <button type="button" onclick="previousPage(9)">Previous</button>
-                <button type="button" onclick="nextPage(11)">Next</button>
-            </form>
-        </div>
+      <!-- 第十一页 -->
+      <div id="page11" class="page">
+        <h2>I have wallets on the following blockchain networks:</h2>
+        <form>
+          <input
+            type="checkbox"
+            id="ethereum"
+            name="blockchain"
+            value="ethereum"
+            onchange="saveFormData()"
+          />
+          <label for="ethereum">Ethereum</label><br />
+          <input type="checkbox" id="bsc" name="blockchain" value="bsc" onchange="saveFormData()"/>
+          <label for="bsc">Binance Smart Chain</label><br />
+          <input
+            type="checkbox"
+            id="cardano"
+            name="blockchain"
+            value="cardano"
+            onchange="saveFormData()"
+          />
+          <label for="cardano">Cardano</label><br />
+          <input type="checkbox" id="solana" name="blockchain" value="solana" onchange="saveFormData()"/>
+          <label for="solana">Solana</label><br /><br />
+          <button type="button" onclick="previousPage(10)">Previous</button>
+          <button type="button" onclick="nextPage(12)">Next</button>
+        </form>
+      </div>
 
-        <!-- 第十一页 -->
-        <div id="page11" class="page">
-            <h2>I have wallets on the following blockchain networks:</h2>
-            <form>
-                <input type="checkbox" id="ethereum" name="blockchain" value="ethereum" />
-                <label for="ethereum">Ethereum</label><br />
-                <input type="checkbox" id="bsc" name="blockchain" value="bsc" />
-                <label for="bsc">Binance Smart Chain</label><br />
-                <input type="checkbox" id="cardano" name="blockchain" value="cardano" />
-                <label for="cardano">Cardano</label><br />
-                <input type="checkbox" id="solana" name="blockchain" value="solana" />
-                <label for="solana">Solana</label><br /><br />
-                <button type="button" onclick="previousPage(10)">Previous</button>
-                <button type="button" onclick="nextPage(12)">Next</button>
-            </form>
-        </div>
+      <!-- 第十二页 -->
+      <div id="page12" class="page">
+        <h2>Have you wrapped tokens?<span style="color: red">*</span></h2>
+        <form>
+          <input
+            type="radio"
+            id="wrapped-yes"
+            name="wrapped-tokens"
+            value="yes"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="wrapped-yes">Yes</label><br />
+          <input
+            type="radio"
+            id="wrapped-no"
+            name="wrapped-tokens"
+            value="no"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="wrapped-no">No</label><br />
+          <input
+            type="radio"
+            id="wrapped-what"
+            name="wrapped-tokens"
+            value="what"
+            required
+            onchange="saveFormData()"
+          />
+          <label for="wrapped-what">What are you talking about?</label
+          ><br /><br />
+          <button type="button" onclick="previousPage(11)">Previous</button>
+          <button type="button" onclick="collectDataAndShowReview(13)">
+            Review
+          </button>
+        </form>
+      </div>
 
-        <!-- 第十二页 -->
-        <div id="page12" class="page">
-            <h2>Have you wrapped tokens?<span style="color: red">*</span></h2>
-            <form>
-                <input type="radio" id="wrapped-yes" name="wrapped-tokens" value="yes" required />
-                <label for="wrapped-yes">Yes</label><br />
-                <input type="radio" id="wrapped-no" name="wrapped-tokens" value="no" required />
-                <label for="wrapped-no">No</label><br />
-                <input type="radio" id="wrapped-what" name="wrapped-tokens" value="what" required />
-                <label for="wrapped-what">What are you talking about?</label><br /><br />
-                <button type="button" onclick="previousPage(11)">Previous</button>
-                <button type="button" onclick="collectDataAndShowReview(13)">
-                    Review
-                </button>
-            </form>
+      <!-- Review 页面 -->
+      <div id="page13" class="page">
+        <h2>Review Your Answers</h2>
+        <p>
+          Please thoroughly review your responses and ensure their accuracy and
+          reliability. The final engagement letter and associated quote will be
+          based on your provided answers. Please note that once you proceed to
+          the engagement letter page, you will no longer be able to make any
+          changes to your responses.
+        </p>
+        <div id="review-content">
+          <!-- 用户回答的内容将显示在这里 -->
         </div>
+        <button type="button" onclick="previousPage(12)">Previous</button>
+        <button type="button" onclick="submitForm()">Submit</button>
+      </div>
 
-        <!-- Review 页面 -->
-        <div id="page13" class="page">
-            <h2>Review Your Answers</h2>
-            <p>
-                Please thoroughly review your responses and ensure their accuracy and
-                reliability. The final engagement letter and associated quote will be
-                based on your provided answers. Please note that once you proceed to
-                the engagement letter page, you will no longer be able to make any
-                changes to your responses.
-            </p>
-            <div id="review-content">
-                <!-- 用户回答的内容将显示在这里 -->
+      <!-- Engagement letter 页面 -->
+      <div id="page14" class="page">
+        <div class="letter-content">
+          <h1 class="EL_h">Engagement Letter</h1>
+          <p>Dear <span id="client-name"></span>,</p>
+          <p>
+            The Network Firm LLP (“TNF,” “we” or “us”) is pleased to provide the
+            services described below (collectively, the “Services”) to the
+            above-named Client (“Client” or “you”). The Services are subject to
+            the terms and conditions of this engagement letter and the Terms &
+            Conditions for Professional Services, located at
+            <a href="https://www.thenetworkfirm.com/terms-of-use"
+              >https://www.thenetworkfirm.com/terms-of-use</a
+            >
+            (together, this “Agreement”).
+          </p>
+          <h2>SCOPE OF WORK</h2>
+          <p id="scope-of-work">
+            <!-- Dynamic content based on user input will be displayed here -->
+          </p>
+          <h2>PRICING</h2>
+          <p>
+            Our price for the Services will be a one-time payment of
+            <span id="totalQuote"></span>. All payments for services will be due
+            in advance, invoiced to you and due at the time of receipt.
+            <!-- Additional pricing details -->
+          </p>
+          <!-- Additional engagement letter content -->
+
+          <h2>CONCLUSION</h2>
+          <p>
+            We appreciate the opportunity to be of service to you and believe
+            this Agreement accurately summarizes the terms applicable to the
+            Services. If you have any questions, please let us know. If you
+            agree with the terms of this Agreement, please sign and return it to
+            us.
+          </p>
+          <p>Sincerely,</p>
+          <p>Noah Buxton</p>
+          <p>CEO & Co-founder</p>
+          <p>The Network Firm LLP</p>
+
+          <p>
+            THIS AGREEMENT, INCLUDING THE TERMS & CONDITIONS FOR PROFESSIONAL
+            SERVICES AVAILABLE AT
+            <a
+              href="https://www.thenetworkfirm.com/terms-and-conditions-for-professional-service"
+              >https://www.thenetworkfirm.com/terms-and-conditions-for-professional-service</a
+            >
+            IS HEREBY APPROVED AND ACCEPTED:
+          </p>
+
+          <form id="signature-form">
+            <div class="form-group">
+              <label for="signature-name"
+                >Signature<span style="color: red">*</span></label
+              >
+              <input
+                type="text"
+                id="signature-name"
+                name="signature-name"
+                class="input-field"
+                required
+              />
             </div>
-            <button type="button" onclick="previousPage(12)">Previous</button>
-            <button type="button" onclick="submitForm()">Submit</button>
-        </div>
-
-        <!-- Engagement letter 页面 -->
-        <div id="page14" class="page">
-            <div class="letter-content">
-                <h1 class="EL_h">Engagement Letter</h1>
-                <p>Dear <span id="client-name"></span>,</p>
-                <p>
-                    The Network Firm LLP (“TNF,” “we” or “us”) is pleased to provide the
-                    services described below (collectively, the “Services”) to the
-                    above-named Client (“Client” or “you”). The Services are subject to
-                    the terms and conditions of this engagement letter and the Terms &
-                    Conditions for Professional Services, located at
-                    <a
-                        href="https://www.thenetworkfirm.com/terms-of-use">https://www.thenetworkfirm.com/terms-of-use</a>
-                    (together, this “Agreement”).
-                </p>
-                <h2>SCOPE OF WORK</h2>
-                <p id="scope-of-work">
-                    <!-- Dynamic content based on user input will be displayed here -->
-                </p>
-                <h2>PRICING</h2>
-                <p>
-                    Our price for the Services will be a one-time payment of
-                    <span id="totalQuote"></span>. All payments for services will be due
-                    in advance, invoiced to you and due at the time of receipt.
-                    <!-- Additional pricing details -->
-                </p>
-                <!-- Additional engagement letter content -->
-
-                <h2>CONCLUSION</h2>
-                <p>
-                    We appreciate the opportunity to be of service to you and believe
-                    this Agreement accurately summarizes the terms applicable to the
-                    Services. If you have any questions, please let us know. If you
-                    agree with the terms of this Agreement, please sign and return it to
-                    us.
-                </p>
-                <p>Sincerely,</p>
-                <p>Noah Buxton</p>
-                <p>CEO & Co-founder</p>
-                <p>The Network Firm LLP</p>
-
-                <p>
-                    THIS AGREEMENT, INCLUDING THE TERMS & CONDITIONS FOR PROFESSIONAL
-                    SERVICES AVAILABLE AT
-                    <a
-                        href="https://www.thenetworkfirm.com/terms-and-conditions-for-professional-service">https://www.thenetworkfirm.com/terms-and-conditions-for-professional-service</a>
-                    IS HEREBY APPROVED AND ACCEPTED:
-                </p>
-
-                <form id="signature-form">
-                    <div class="form-group">
-                        <label for="signature-name">Signature<span style="color: red">*</span></label>
-                        <input type="text" id="signature-name" name="signature-name" class="input-field" required />
-                    </div>
-                    <div class="form-group">
-                        <label for="signature-date">Date<span style="color: red">*</span></label>
-                        <input type="date" id="signature-date" name="signature-date" class="input-field" required />
-                    </div>
-                    <button type="button" onclick="submitSignature()">Engage</button>
-                </form>
+            <div class="form-group">
+              <label for="signature-date"
+                >Date<span style="color: red">*</span></label
+              >
+              <input
+                type="date"
+                id="signature-date"
+                name="signature-date"
+                class="input-field"
+                required
+              />
             </div>
+            <button type="button" onclick="submitSignature()">Engage</button>
+          </form>
         </div>
+      </div>
     </div>
 
     <script>
-        function validateForm(currentPageNumber) {
-            // 获取当前页面的表单元素
-            var currentPage = document.getElementById("page" + currentPageNumber);
-            var form = currentPage.querySelector("form");
+      function validateForm(currentPageNumber) {
+        // 获取当前页面的表单元素
+        var currentPage = document.getElementById("page" + currentPageNumber);
+        var form = currentPage.querySelector("form");
 
-            // 如果当前页面包含表单，检查表单是否有效
-            if (form && !form.checkValidity()) {
-                alert("Please fill out all required fields.");
-                return false;
-            }
-
-            return true;
+        // 如果当前页面包含表单，检查表单是否有效
+        if (form && !form.checkValidity()) {
+          alert("Please fill out all required fields.");
+          return false;
         }
 
-        function nextPage(pageNumber) {
-            if (pageNumber != 1) {
-                // 检查当前页面的表单是否有效
-                if (!validateForm(pageNumber - 1)) {
-                    return; // 如果表单无效，不进行页面切换
-                }
-            }
+        return true;
+      }
 
-            // 隐藏所有页面
-            var pages = document.querySelectorAll(".page");
-            pages.forEach(function (page) {
-                page.classList.remove("page-active");
-            });
-
-            // 显示指定页面
-            document
-                .getElementById("page" + pageNumber)
-                .classList.add("page-active");
-
-            // 获取进度条元素
-            var progressBar = document.querySelector(".progress-bar");
-
-            // 从第二页开始显示并更新进度条
-            if (pageNumber >= 2 && pageNumber < 14) {
-                progressBar.style.display = "block"; // 显示进度条
-                var progressPercentage = ((pageNumber - 1) / 13) * 100; // 第一页不计入进度
-                document.querySelector(".progress").style.width =
-                    progressPercentage + "%";
-                document.querySelector(".progress").textContent =
-                    Math.round(progressPercentage) + "%";
-            } else {
-                progressBar.style.display = "none"; // 第一页或第14页隐藏进度条
-            }
+      function nextPage(pageNumber) {
+        if (pageNumber != 1) {
+          // 检查当前页面的表单是否有效
+          if (!validateForm(pageNumber - 1)) {
+            return; // 如果表单无效，不进行页面切换
+          }
         }
 
-        function previousPage(pageNumber) {
-            nextPage(pageNumber); // 回到前一页使用相同的逻辑
+        // 隐藏所有页面
+        var pages = document.querySelectorAll(".page");
+        pages.forEach(function (page) {
+          page.classList.remove("page-active");
+        });
+
+        // 显示指定页面
+        document
+          .getElementById("page" + pageNumber)
+          .classList.add("page-active");
+
+        // 获取进度条元素
+        var progressBar = document.querySelector(".progress-bar");
+
+        // 从第二页开始显示并更新进度条
+        if (pageNumber >= 2 && pageNumber < 14) {
+          progressBar.style.display = "block"; // 显示进度条
+          var progressPercentage = ((pageNumber - 1) / 13) * 100; // 第一页不计入进度
+          document.querySelector(".progress").style.width =
+            progressPercentage + "%";
+          document.querySelector(".progress").textContent =
+            Math.round(progressPercentage) + "%";
+        } else {
+          progressBar.style.display = "none"; // 第一页或第14页隐藏进度条
+        }
+      }
+
+      function previousPage(pageNumber) {
+        nextPage(pageNumber); // 回到前一页使用相同的逻辑
+      }
+
+      function collectDataAndShowReview(pageNumber) {
+        // 检查当前页面的表单是否有效
+        if (!validateForm(pageNumber - 1)) {
+          return; // 如果表单无效，不进行页面切换
         }
 
-        function collectDataAndShowReview(pageNumber) {
-            // 检查当前页面的表单是否有效
-            if (!validateForm(pageNumber - 1)) {
-                return; // 如果表单无效，不进行页面切换
-            }
+        // 收集用户输入的数据
+        var firstName = document.getElementById("first-name").value;
+        var lastName = document.getElementById("last-name").value;
+        var email = document.getElementById("email").value;
+        var need = document.querySelector('input[name="need"]:checked').value;
+        var complexity = document.querySelector(
+          'input[name="complexity"]:checked'
+        ).value;
+        var firstYear = document.getElementById("first-year").value;
 
-            // 收集用户输入的数据
-            var firstName = document.getElementById("first-name").value;
-            var lastName = document.getElementById("last-name").value;
-            var email = document.getElementById("email").value;
-            var need = document.querySelector('input[name="need"]:checked').value;
-            var complexity = document.querySelector(
-                'input[name="complexity"]:checked'
-            ).value;
-            var firstYear = document.getElementById("first-year").value;
+        // 收集第六页的数据
+        var cryptoAssets = document.querySelector(
+          'input[name="crypto-assets"]:checked'
+        ).value;
 
-            // 收集第六页的数据
-            var cryptoAssets = document.querySelector(
-                'input[name="crypto-assets"]:checked'
-            ).value;
+        // 收集第七页的数据
+        var exchanges = [];
+        document
+          .querySelectorAll('input[name="exchange"]:checked')
+          .forEach(function (checkbox) {
+            exchanges.push(checkbox.value);
+          });
+        var otherExchanges = document.getElementById("other-exchanges").value;
 
-            // 收集第七页的数据
-            var exchanges = [];
-            document
-                .querySelectorAll('input[name="exchange"]:checked')
-                .forEach(function (checkbox) {
-                    exchanges.push(checkbox.value);
-                });
-            var otherExchanges = document.getElementById("other-exchanges").value;
+        // 收集第八页的数据
+        var bots = document.querySelector('input[name="bots"]:checked').value;
 
-            // 收集第八页的数据
-            var bots = document.querySelector('input[name="bots"]:checked').value;
+        // 收集第九页的数据
+        var tradeFrequency = document.querySelector(
+          'input[name="trade-frequency"]:checked'
+        ).value;
 
-            // 收集第九页的数据
-            var tradeFrequency = document.querySelector(
-                'input[name="trade-frequency"]:checked'
-            ).value;
+        // 收集第十页的数据
+        var walletCount = document.getElementById("wallet-count").value;
 
-            // 收集第十页的数据
-            var walletCount = document.getElementById("wallet-count").value;
+        // 收集第十一页的数据
+        var blockchainNetworks = [];
+        document
+          .querySelectorAll('input[name="blockchain"]:checked')
+          .forEach(function (checkbox) {
+            blockchainNetworks.push(checkbox.value);
+          });
 
-            // 收集第十一页的数据
-            var blockchainNetworks = [];
-            document
-                .querySelectorAll('input[name="blockchain"]:checked')
-                .forEach(function (checkbox) {
-                    blockchainNetworks.push(checkbox.value);
-                });
+        // 收集第十二页的数据
+        var wrappedTokens = document.querySelector(
+          'input[name="wrapped-tokens"]:checked'
+        ).value;
 
-            // 收集第十二页的数据
-            var wrappedTokens = document.querySelector(
-                'input[name="wrapped-tokens"]:checked'
-            ).value;
-
-            // 显示审视页面
-            var reviewContent = document.getElementById("review-content");
-            reviewContent.innerHTML = `
+        // 显示审视页面
+        var reviewContent = document.getElementById("review-content");
+        reviewContent.innerHTML = `
                 <div class="review-item"><strong>First Name:</strong> <input type="text" id="review-first-name" value="${firstName}"></div>
                 <div class="review-item"><strong>Last Name:</strong> <input type="text" id="review-last-name" value="${lastName}"></div>
                 <div class="review-item"><strong>Email:</strong> <input type="email" id="review-email" value="${email}"></div>
                 <div class="review-item">
   <strong>Need:</strong> 
   <select id="review-need">
-    <option value="individual" ${need === "individual" ? "selected" : ""
-                }>Individual for personal tax filing</option>
-    <option value="representative" ${need === "representative" ? "selected" : ""
-                }>Fund representative for tax basis tracking</option>
-    <option value="corp_representative" ${need === "corp_representative" ? "selected" : ""
-                }>Corporate rep for crypto tax management</option>
+    <option value="individual" ${
+      need === "individual" ? "selected" : ""
+    }>Individual for personal tax filing</option>
+    <option value="representative" ${
+      need === "representative" ? "selected" : ""
+    }>Fund representative for tax basis tracking</option>
+    <option value="corp_representative" ${
+      need === "corp_representative" ? "selected" : ""
+    }>Corporate rep for crypto tax management</option>
   </select>
 </div>
                 <div class="review-item"><strong>Complexity:</strong> <select id="review-complexity">
-                    <option value="simple" ${complexity === "simple" ? "selected" : ""
-                }>Simple</option>
-                    <option value="moderate" ${complexity === "moderate" ? "selected" : ""
-                }>Medium</option>
-                    <option value="complex" ${complexity === "complex" ? "selected" : ""
-                }>Complex</option>
+                    <option value="simple" ${
+                      complexity === "simple" ? "selected" : ""
+                    }>Simple</option>
+                    <option value="moderate" ${
+                      complexity === "moderate" ? "selected" : ""
+                    }>Medium</option>
+                    <option value="complex" ${
+                      complexity === "complex" ? "selected" : ""
+                    }>Complex</option>
                 </select></div>
                 <div class="review-item"><strong>First Year of Crypto Purchase:</strong> <input type="number" id="review-first-year" value="${firstYear}"></div>
                
                 <div class="review-item">
                 <strong>Crypto Assets Held:</strong>
                 <select id="review-crypto-assets">
-                    <option value="1-10" ${cryptoAssets === "1-10" ? "selected" : ""
-                }>1-10 crypto assets</option>
-                    <option value="10-20" ${cryptoAssets === "10-20" ? "selected" : ""
-                }>10-20 crypto assets</option>
-                    <option value="lost-track" ${cryptoAssets === "lost-track" ? "selected" : ""
-                }>I lost track</option>
+                    <option value="1-10" ${
+                      cryptoAssets === "1-10" ? "selected" : ""
+                    }>1-10 crypto assets</option>
+                    <option value="10-20" ${
+                      cryptoAssets === "10-20" ? "selected" : ""
+                    }>10-20 crypto assets</option>
+                    <option value="lost-track" ${
+                      cryptoAssets === "lost-track" ? "selected" : ""
+                    }>I lost track</option>
                 </select>
             </div>
 
            
             <div class="review-item"><strong>Exchanges:</strong> <input type="text" id="review-exchanges" value="${exchanges.join(
-                    ", "
-                )}"></div>
+              ", "
+            )}"></div>
             <div class="review-item"><strong>Other Exchanges:</strong> <input type="text" id="review-other-exchanges" value="${otherExchanges}"></div>
 
             <div class="review-item">
                 <strong>Use of Bots:</strong>
                 <select id="review-bots">
-                    <option value="yes" ${bots === "yes" ? "selected" : ""
-                }>Yes</option>
-                    <option value="no" ${bots === "no" ? "selected" : ""
-                }>No</option>
-                    <option value="working-on-it" ${bots === "working-on-it" ? "selected" : ""
-                }>Working on it</option>
+                    <option value="yes" ${
+                      bots === "yes" ? "selected" : ""
+                    }>Yes</option>
+                    <option value="no" ${
+                      bots === "no" ? "selected" : ""
+                    }>No</option>
+                    <option value="working-on-it" ${
+                      bots === "working-on-it" ? "selected" : ""
+                    }>Working on it</option>
                 </select>
             </div>        
             
@@ -543,12 +773,15 @@
             <div class="review-item">
                 <strong>Trading Frequency:</strong>
                 <select id="review-trade-frequency">
-                    <option value="monthly" ${tradeFrequency === "monthly" ? "selected" : ""
-                }>Once or twice a month</option>
-                    <option value="weekly" ${tradeFrequency === "weekly" ? "selected" : ""
-                }>Once a week</option>
-                    <option value="more" ${tradeFrequency === "more" ? "selected" : ""
-                }>More</option>
+                    <option value="monthly" ${
+                      tradeFrequency === "monthly" ? "selected" : ""
+                    }>Once or twice a month</option>
+                    <option value="weekly" ${
+                      tradeFrequency === "weekly" ? "selected" : ""
+                    }>Once a week</option>
+                    <option value="more" ${
+                      tradeFrequency === "more" ? "selected" : ""
+                    }>More</option>
                 </select>
             </div>
 
@@ -557,143 +790,240 @@
 
             <!-- 第十一页数据 -->
             <div class="review-item"><strong>Blockchain Networks:</strong> <input type="text" id="review-blockchain-networks" value="${blockchainNetworks.join(
-                    ", "
-                )}"></div>
+              ", "
+            )}"></div>
 
             <!-- 第十二页数据 -->
             <div class="review-item">
                 <strong>Wrapped Tokens:</strong>
                 <select id="review-wrapped-tokens">
-                    <option value="yes" ${wrappedTokens === "yes" ? "selected" : ""
-                }>Yes</option>
-                    <option value="no" ${wrappedTokens === "no" ? "selected" : ""
-                }>No</option>
-                    <option value="what" ${wrappedTokens === "what" ? "selected" : ""
-                }>What are you talking about?</option>
+                    <option value="yes" ${
+                      wrappedTokens === "yes" ? "selected" : ""
+                    }>Yes</option>
+                    <option value="no" ${
+                      wrappedTokens === "no" ? "selected" : ""
+                    }>No</option>
+                    <option value="what" ${
+                      wrappedTokens === "what" ? "selected" : ""
+                    }>What are you talking about?</option>
                 </select>
             </div>
         `;
 
-            nextPage(13); // 显示审视页面
+        nextPage(13); // 显示审视页面
+      }
+
+      function submitForm() {
+        // 收集审视页面上修改后的数据
+        var updatedFirstName =
+          document.getElementById("review-first-name").value;
+        var updatedLastName = document.getElementById("review-last-name").value;
+        var updatedEmail = document.getElementById("review-email").value;
+        var updatedNeed = document.getElementById("review-need").value;
+        var updatedComplexity =
+          document.getElementById("review-complexity").value;
+        var updatedFirstYear =
+          document.getElementById("review-first-year").value;
+
+        // 收集第六、第七和第八页的数据
+        var updatedCryptoAssets = document.getElementById(
+          "review-crypto-assets"
+        ).value;
+        var updatedExchanges = document
+          .getElementById("review-exchanges")
+          .value.split(", ");
+        var updatedOtherExchanges = document.getElementById(
+          "review-other-exchanges"
+        ).value;
+        var updatedBots = document.getElementById("review-bots").value;
+
+        // 收集第九页至第十二页的数据
+        var updatedTradeFrequency = document.getElementById(
+          "review-trade-frequency"
+        ).value;
+        var updatedWalletCount = document.getElementById(
+          "review-wallet-count"
+        ).value;
+        var updatedBlockchainNetworks = document
+          .getElementById("review-blockchain-networks")
+          .value.split(", ");
+        var updatedWrappedTokens = document.getElementById(
+          "review-wrapped-tokens"
+        ).value;
+
+        var complexityWeights = {
+          simple: 1.0,
+          moderate: 1.5,
+          complex: 2.0,
+        };
+        // 基础价格
+        var basePrice = 5000;
+        // 计算报价
+        var complexityWeight = complexityWeights[updatedComplexity];
+        var quote = basePrice * complexityWeight;
+
+        // 组合数据以供提交
+        var formData = {
+          updatedFirstName,
+          updatedLastName,
+          updatedEmail,
+          updatedNeed,
+          updatedComplexity,
+          updatedFirstYear,
+          updatedCryptoAssets,
+          updatedExchanges,
+          updatedOtherExchanges,
+          updatedBots,
+          updatedTradeFrequency,
+          updatedWalletCount,
+          updatedBlockchainNetworks,
+          updatedWrappedTokens,
+          quote,
+        };
+        console.log("提交的数据:", formData);
+
+        // // 显示提交成功或跳转到其他页面
+        // alert("Quote: " + quote);
+
+        // 更新Engagement Letter页面
+        document.getElementById("client-name").textContent =
+          updatedFirstName + " " + updatedLastName;
+
+        // 根据updatedNeed更新Scope of Work
+        var scopeOfWorkText;
+        switch (updatedNeed) {
+          case "individual":
+            scopeOfWorkText = "Individual services for personal tax filing.";
+            break;
+          case "representative":
+            scopeOfWorkText =
+              "Services for fund representatives for tax basis tracking.";
+            break;
+          case "corp_representative":
+            scopeOfWorkText = "Corporate services for crypto tax management.";
+            break;
+          default:
+            scopeOfWorkText = "Custom services based on your needs.";
+            break;
         }
+        // 假设有一个用来显示Scope of Work的元素
+        document.getElementById("scope-of-work").textContent = scopeOfWorkText;
+        // 更新Engagement Letter页面的报价
+        document.getElementById("totalQuote").textContent =
+          "$" + quote.toFixed(2);
 
-        function submitForm() {
-            // 收集审视页面上修改后的数据
-            var updatedFirstName =
-                document.getElementById("review-first-name").value;
-            var updatedLastName = document.getElementById("review-last-name").value;
-            var updatedEmail = document.getElementById("review-email").value;
-            var updatedNeed = document.getElementById("review-need").value;
-            var updatedComplexity =
-                document.getElementById("review-complexity").value;
-            var updatedFirstYear =
-                document.getElementById("review-first-year").value;
+        nextPage(14); // 显示engagement letter页面
+      }
 
-            // 收集第六、第七和第八页的数据
-            var updatedCryptoAssets = document.getElementById(
-                "review-crypto-assets"
-            ).value;
-            var updatedExchanges = document
-                .getElementById("review-exchanges")
-                .value.split(", ");
-            var updatedOtherExchanges = document.getElementById(
-                "review-other-exchanges"
-            ).value;
-            var updatedBots = document.getElementById("review-bots").value;
+      function submitSignature() {
+        var form = document.getElementById("signature-form");
 
-            // 收集第九页至第十二页的数据
-            var updatedTradeFrequency = document.getElementById(
-                "review-trade-frequency"
-            ).value;
-            var updatedWalletCount = document.getElementById(
-                "review-wallet-count"
-            ).value;
-            var updatedBlockchainNetworks = document
-                .getElementById("review-blockchain-networks")
-                .value.split(", ");
-            var updatedWrappedTokens = document.getElementById(
-                "review-wrapped-tokens"
-            ).value;
+        // Check if the form is valid
+        if (form.checkValidity()) {
+          var name = document.getElementById("signature-name").value;
+          var date = document.getElementById("signature-date").value;
+          alert("Engagement Letter signed by " + name + " on " + date);
+          downloadPDF();
+        } else {
+          // If the form is invalid, display an error message
+          alert("Please fill out all required fields.");
+        }
+      }
 
-            var complexityWeights = {
-                simple: 1.0,
-                moderate: 1.5,
-                complex: 2.0,
-            };
-            // 基础价格
-            var basePrice = 5000;
-            // 计算报价
-            var complexityWeight = complexityWeights[updatedComplexity];
-            var quote = basePrice * complexityWeight;
+      function saveFormData() {
+        var formData = {
+          firstName: document.getElementById("first-name").value,
+          lastName: document.getElementById("last-name").value,
+          email: document.getElementById("email").value,
+          need: document.querySelector('input[name="need"]:checked')?.value,
+          complexity: document.querySelector('input[name="complexity"]:checked')
+            ?.value,
+          firstYear: document.getElementById("first-year").value,
+          cryptoAssets: document.querySelector(
+            'input[name="crypto-assets"]:checked'
+          )?.value,
+          exchanges: Array.from(
+            document.querySelectorAll('input[name="exchange"]:checked')
+          ).map((el) => el.value),
+          otherExchanges: document.getElementById("other-exchanges").value,
+          bots: document.querySelector('input[name="bots"]:checked')?.value,
+          tradeFrequency: document.querySelector(
+            'input[name="trade-frequency"]:checked'
+          )?.value,
+          walletCount: document.getElementById("wallet-count").value,
+          blockchainNetworks: Array.from(
+            document.querySelectorAll('input[name="blockchain"]:checked')
+          ).map((el) => el.value),
+          wrappedTokens: document.querySelector(
+            'input[name="wrapped-tokens"]:checked'
+          )?.value,
+        };
+        localStorage.setItem("formData", JSON.stringify(formData));
+      }
 
-            // 组合数据以供提交
-            var formData = {
-                updatedFirstName,
-                updatedLastName,
-                updatedEmail,
-                updatedNeed,
-                updatedComplexity,
-                updatedFirstYear,
-                updatedCryptoAssets,
-                updatedExchanges,
-                updatedOtherExchanges,
-                updatedBots,
-                updatedTradeFrequency,
-                updatedWalletCount,
-                updatedBlockchainNetworks,
-                updatedWrappedTokens,
-                quote,
-            };
-            console.log("提交的数据:", formData);
+      function loadSavedFormData() {
+        var savedData = localStorage.getItem("formData");
+        if (savedData) {
+          var formData = JSON.parse(savedData);
 
-            // // 显示提交成功或跳转到其他页面
-            // alert("Quote: " + quote);
+          document.getElementById("first-name").value =
+            formData.firstName || "";
+          document.getElementById("last-name").value = formData.lastName || "";
+          document.getElementById("email").value = formData.email || "";
+          document.getElementById("first-year").value =
+            formData.firstYear || "";
+          document.getElementById("other-exchanges").value =
+            formData.otherExchanges || "";
+          document.getElementById("wallet-count").value =
+            formData.walletCount || "";
 
-            // 更新Engagement Letter页面
-            document.getElementById("client-name").textContent =
-                updatedFirstName + " " + updatedLastName;
+          setCheckedValue('input[name="need"]', formData.need);
+          setCheckedValue('input[name="complexity"]', formData.complexity);
+          setCheckedValue('input[name="crypto-assets"]', formData.cryptoAssets);
+          setCheckedValue('input[name="bots"]', formData.bots);
+          setCheckedValue(
+            'input[name="trade-frequency"]',
+            formData.tradeFrequency
+          );
+          setCheckedValue(
+            'input[name="wrapped-tokens"]',
+            formData.wrappedTokens
+          );
 
-            // 根据updatedNeed更新Scope of Work
-            var scopeOfWorkText;
-            switch (updatedNeed) {
-                case "individual":
-                    scopeOfWorkText = "Individual services for personal tax filing.";
-                    break;
-                case "representative":
-                    scopeOfWorkText =
-                        "Services for fund representatives for tax basis tracking.";
-                    break;
-                case "corp_representative":
-                    scopeOfWorkText = "Corporate services for crypto tax management.";
-                    break;
-                default:
-                    scopeOfWorkText = "Custom services based on your needs.";
-                    break;
+          setCheckedValues('input[name="exchange"]', formData.exchanges);
+          setCheckedValues(
+            'input[name="blockchain"]',
+            formData.blockchainNetworks
+          );
+        }
+      }
+
+      function setCheckedValue(selector, value) {
+        if (value) {
+          var element = document.querySelector(selector + `[value="${value}"]`);
+          if (element) {
+            element.checked = true;
+          }
+        }
+      }
+
+      function setCheckedValues(selector, values) {
+        if (values && values.length) {
+          values.forEach((value) => {
+            var element = document.querySelector(
+              selector + `[value="${value}"]`
+            );
+            if (element) {
+              element.checked = true;
             }
-            // 假设有一个用来显示Scope of Work的元素
-            document.getElementById("scope-of-work").textContent = scopeOfWorkText;
-            // 更新Engagement Letter页面的报价
-            document.getElementById("totalQuote").textContent =
-                "$" + quote.toFixed(2);
-
-            nextPage(14); // 显示engagement letter页面
+          });
         }
+      }
 
-        function submitSignature() {
-            var form = document.getElementById("signature-form");
-
-            // Check if the form is valid
-            if (form.checkValidity()) {
-                var name = document.getElementById("signature-name").value;
-                var date = document.getElementById("signature-date").value;
-                alert("Engagement Letter signed by " + name + " on " + date);
-                downloadPDF();
-            } else {
-                // If the form is invalid, display an error message
-                alert("Please fill out all required fields.");
-            }
-        }
+      window.onload = function () {
+        loadSavedFormData();
+        // ...（其他页面加载时的逻辑）
+      };
     </script>
-</body>
-
+  </body>
 </html>
